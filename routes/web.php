@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::prefix('nombre')->group(function () {
     Route::get('/get',[ PersonaController::class, 'get']);
     Route::post('/crear',[ PersonaController::class, 'create']);
+    Route::put('/update/{id}',[ PersonaController::class, 'update']);
+    Route::delete('/delete/{id}',[ PersonaController::class, 'delete']);
 });
 
 // En tu archivo routes/web.php

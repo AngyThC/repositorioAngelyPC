@@ -28,4 +28,26 @@ class PersonaController extends Controller
         return response()->json([ 'error' => $th->getMessage()], 500);
     }
    }
+
+   //Metodo Update
+   public function update(Request $request,$id){
+    try {
+        $data['nombre'] = $request['nombre'];
+        $data['edad'] = $request['edad'];
+        persona::find($id)->update($data);
+        $res = persona::find($id);
+        return response()->json( $res , 200);
+    } catch (\Throwable $th) {
+        return response()->json([ 'error' => $th->getMessage()], 500);
+    }
+}
+
+public function delete($id){
+    try {
+        $res = persona::find($id)->delete();
+        return response()->json([ "deleted" => $res ], 200);
+    } catch (\Throwable $th) {
+        return response()->json([ 'error' => $th->getMessage("Deleted Tool")], 500);
+    }
+}
 }
